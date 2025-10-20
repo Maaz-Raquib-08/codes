@@ -1,41 +1,65 @@
-
-
 #include <stdio.h>
 
-int w[10], n, m, S, x[10];
+int w[10], x[10] = {0}, flag = 0;
+int n, m;
+
+// Recursive function to find subsets
 void sumofsub(int s, int k, int r)
 {
     int i;
+
+    // Include current element
     x[k] = 1;
+
+    // Check if including this element gives the exact sum
     if (s + w[k] == m)
     {
-        printf("\nSubset = ");
+        printf("\nSubset found: ");
         for (i = 0; i <= k; i++)
             if (x[i] == 1)
-                printf("%d\t", w[i]);
+                printf("%d ", w[i]);
+        flag = 1;
     }
-    else if (s + w[k] + w[k + 1] <= m)
+
+    // If including current element doesn't exceed m, then explore further
+    else if (s + w[k] + w[k + 1] <= m && k + 1 < n)
         sumofsub(s + w[k], k + 1, r - w[k]);
-    if ((s + r - w[k] >= m) && (s + w[k + 1] <= m))
+
+    // Explore the case where we exclude the current element
+    if (s + r - w[k] >= m && k + 1 < n)
     {
         x[k] = 0;
         sumofsub(s, k + 1, r - w[k]);
     }
+
+    // Backtrack
+    x[k] = 0;
 }
 
-void main()
+int main()
 {
-    int i, sum = 0;
-    printf("\nEnter no of elements: ");
+    int i, s = 0, r = 0;
+
+    printf("Enter number of elements in the set: ");
     scanf("%d", &n);
-    printf("\nEnter the elements in ascending order: ");
+
+    printf("\nEnter elements:\n");
     for (i = 0; i < n; i++)
     {
+        printf("Element %d: ", i + 1);
         scanf("%d", &w[i]);
-        sum += w[i];
+        r += w[i];
     }
-    printf("\nEnter the sum value: ");
+
+    printf("\nEnter the target sum (m): ");
     scanf("%d", &m);
-    printf("\nSubset combinations are:");
-    sumofsub(0, 0, sum);
+
+    printf("\nAll possible subsets with sum = %d are:\n", m);
+
+    sumofsub(s, 0, r);
+
+    if (flag == 0)
+        printf("\nNo combination exists.\n");
+
+    return 0;
 }
