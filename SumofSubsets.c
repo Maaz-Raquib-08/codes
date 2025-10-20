@@ -21,12 +21,11 @@ void sumofsub(int s, int k, int r)
         flag = 1;
     }
 
-    // If including current element doesn't exceed m, then explore further
-    else if (s + w[k] + w[k + 1] <= m && k + 1 < n)
+    if (k + 1 < n && s + w[k] + w[k + 1] <= m)
         sumofsub(s + w[k], k + 1, r - w[k]);
 
     // Explore the case where we exclude the current element
-    if (s + r - w[k] >= m && k + 1 < n)
+    if (k + 1 < n && (s + r - w[k] >= m) && (s + w[k + 1] <= m))
     {
         x[k] = 0;
         sumofsub(s, k + 1, r - w[k]);
