@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     int n, maxDeadline = 0, maxProfit = 0;
     printf("Enter the number of jobs: ");
     scanf("%d", &n);
-    Job jobs[n];
+    struct Job jobs[n];
     for (int i = 0; i < n; i++)
     {
         printf("Enter the deadline and profit of Job-%d: ", (i + 1));
@@ -74,3 +74,4 @@ int main(int argc, char const *argv[])
     printf("\n");
     return 0;
 }
+
