@@ -6,7 +6,7 @@ struct Job
     int deadline;
     int profit;
 };
-int main(int argc, char const *argv[])
+int main()
 {
     int n, maxDeadline = 0, maxProfit = 0;
     printf("Enter the number of jobs: ");
@@ -23,9 +23,9 @@ int main(int argc, char const *argv[])
     {
         for (int j = 0; j < n - i - 1; ++j)
         {
-            if (jobs[j].profit > jobs[j + 1].profit)
+            if (jobs[j].profit < jobs[j + 1].profit)
             {
-                Job temp = jobs[j];
+                struct Job temp = jobs[j];
                 jobs[j] = jobs[j + 1];
                 jobs[j + 1] = temp;
             }
@@ -38,7 +38,10 @@ int main(int argc, char const *argv[])
             maxDeadline = jobs[i].deadline;
     }
     // making a slot for jobs and an array to show job sequences
-    int timeSlot[maxDeadline + 1] = {0};
+    int timeSlot[maxDeadline + 1];
+    for (int i = 0; i <= maxDeadline; i++)
+    timeSlot[i] = 0;
+
 
     for (int i = 0; i < n; ++i)
     {
@@ -74,4 +77,5 @@ int main(int argc, char const *argv[])
     printf("\n");
     return 0;
 }
+
 
