@@ -1,24 +1,4 @@
 #include <stdio.h>
-
-#define N 4
-int board[N][N];
-int found = 0; // flag to check if at least one solution exists
-
-void printBoard() {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++)
-            printf("%d ", board[i][j]);
-        printf("\n");
-    }
-    printf("\n");
-    found = 1; // mark that at least one solution was found
-}
-
-int isSafe(int row, int col) {
-    for (int i = 0; i < col; i++)           // check left row
-        if (board[row][i]) return 0;
-    for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) // upper diagonal
- #include <stdio.h>
 #include <conio.h>
 
 #define N 4
@@ -145,4 +125,5 @@ void main() {
 //         printf("Solution doesn't exist \n");
 
 // }
+
 
