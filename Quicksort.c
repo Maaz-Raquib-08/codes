@@ -38,8 +38,7 @@ int main()
 {
     int arr[7] = {2, 8, 89, 34, 87, 1, 39};
     quicksort(arr, 0, 6);
-    printf("Sorted numbers:
-");
+    printf("Sorted numbers:");
     for (int i = 0; i < 7; ++i)
         printf("%d ", arr[i]);
     return 0;
