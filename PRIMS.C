@@ -1,27 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
 
-void prims(int n, int cost[10][10]);
-
-int main()
-{
-    int i, j, n = 3, cost[10][10] = { {0, 5, 10},
-                                       {5, 0, 5},
-                                       {10, 5, 0} };
-
-    for (i = 0; i < n; ++i)
-    {
-        for (j = 0; j < n; ++j)
-        {
-            if (cost[i][j] == 0) cost[i][j] = 999;
-        }
-    }
-    prims(n, cost);
-    getch();
-    return 0;
-}
-
 void prims(int n, int cost[10][10])
+
 {
     int i, j, u, v, min, minCost = 0, visited[10] = {0};
     visited[0] = 1;
@@ -46,3 +27,22 @@ void prims(int n, int cost[10][10])
     }
     printf("\nMin cost = %d", minCost);
 }
+
+int main()
+{
+    int i, j, n = 3, cost[10][10] = { {0, 5, 10},
+                                       {5, 0, 5},
+                                       {10, 5, 0} };
+
+    for (i = 0; i < n; ++i)
+    {
+        for (j = 0; j < n; ++j)
+        {
+            if (cost[i][j] == 0) cost[i][j] = 999;
+        }
+    }
+    prims(n, cost);
+    getch();
+    return 0;
+}
+
